@@ -92,14 +92,14 @@ specialChars = tk.IntVar(value=0)
 root.title("Generate Password") 
 
 #Standardgröße setzen Breite x Höhe          
-root.geometry("400x300")
+root.geometry("420x300")
 #Mindestgröße: Breite x Höhe 
-root.minsize(400, 280)
+#root.minsize(420, 300)
 #Maximalgröße: Breite x Höhe
-root.maxsize(600, 600)
+#root.maxsize(500, 400)
 
 #Deaktiviere das Skalieren (weder in Breite noch in Höhe)                 
-#root.resizable(False, False)           
+root.resizable(False, False)           
 
 # Icon oben links & in Taskleiste
 root.iconbitmap(resource_path("assets/favicon.ico"))
