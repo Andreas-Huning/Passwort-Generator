@@ -28,53 +28,48 @@ def close_tool():
 
 # Funktion zum erstellen des Passwortes
 def generate_password():
-    # Prüfen ob mindestens eine Checkbox aktiviert ist
-    if letterUppercase.get() == 0 and letterLowercase.get() == 0 and number.get() == 0 and specialChar.get() == 0 and mathSymbol.get() == 0 and bracket.get() == 0:
+    # Alle Checkboxen in einer Liste zur einfacheren Prüfung
+    options = [
+        (letterUppercase.get(), letters.upper()),
+        (letterLowercase.get(), letters),
+        (number.get(), numbers),
+        (specialChar.get(), specials),
+        (mathSymbol.get(), mathSymbols),
+        (bracket.get(), brackets)
+    ]
+
+    # Prüfen, ob mindestens eine Option gewählt wurde
+    if not any(opt[0] for opt in options):
         infoLabel.config(text="Please select at least one character type")
         return
     else:
         infoLabel.config(text="")
-    input_value = numberInput.get()
-    try:
-        passwordLength = int(input_value)
-        password =""
-        #infoLabel.config(text=f"{passwordLength} ist eine Zahl")
-        infoLabel.config(text="")
-        #print(f"{passwordLength} ist eine Zahl")
-        # Hier kannst du dann weiter machen mit passwordLength
-        chars = ""
-        if letterUppercase.get() == 1:
-            chars += letters.upper()
-            #print(chars)
-        if letterLowercase.get() == 1:
-            chars += letters
-            #print(chars)
-        if number.get() == 1:
-            chars += numbers
-            #print(chars)
-        if specialChar.get() == 1:
-            chars += specials
-            #print(chars)
-        if mathSymbol.get() == 1:
-            chars += mathSymbols
-            #print(chars)
-        if bracket.get() == 1:
-            chars += brackets
-            #print(chars) 
-        for x in range(passwordLength):
-            password += random.choice(chars)
-        #print(f"The password is: {password}")
-        output_Password.delete(0, tk.END)
-        output_Password.insert(0, password)
 
+    # Länge des Passwortes holen und prüfen
+    try:
+        passwordLength = int(numberInput.get())
     except ValueError:
-        #infoLabel.config(text=f"'{input_value}' ist keine Zahl")
         infoLabel.config(text="Please enter an integer")
-        #print(f"'{input_value}' ist keine Zahl")
-        #print("Uppercase:", letterUppercase.get())
-        #print("Lowercase:", letterLowercase.get())
-        #print("Numbers:", number.get())
-        #print("Special Chars:", specialChars.get())
+        return
+
+    # Alle ausgewählten Zeichengruppen zusammenfügen
+    chars = ''.join(group for selected, group in options if selected)
+    print(f"vor dem Mischen : {chars}")
+    # Liste aus Zeichen machen, mischen und wieder zusammenfügen
+    char_list = list(chars)
+    random.shuffle(char_list)
+    chars = ''.join(char_list)
+
+    print(f"nach dem Mischen : {chars}")
+
+    # Passwort generieren
+    password = ''.join(random.choice(chars) for x in range(passwordLength))
+
+    # Passwort anzeigen
+    output_Password.delete(0, tk.END)
+    output_Password.insert(0, password)
+
+
 
 def copy_to_clipboard():
     password = output_Password.get()
