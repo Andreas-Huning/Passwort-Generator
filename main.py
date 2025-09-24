@@ -8,7 +8,9 @@ import random
 #Variablen
 letters = "abcdefghijklmnopqrstuvwxyz"
 numbers = "1234567890"
-special = "!§$%&/()"
+specials = '!"§$%&_.,:;'
+mathSymbols = "+-*/"
+brackets= "(){}[]"
 
 def resource_path(relative_path):
     """ Gibt Pfad zur Datei, auch im PyInstaller-Build """
@@ -27,7 +29,7 @@ def close_tool():
 # Funktion zum erstellen des Passwortes
 def generate_password():
     # Prüfen ob mindestens eine Checkbox aktiviert ist
-    if letterUppercase.get() == 0 and letterLowercase.get() == 0 and number.get() == 0 and specialChars.get() == 0:
+    if letterUppercase.get() == 0 and letterLowercase.get() == 0 and number.get() == 0 and specialChar.get() == 0 and mathSymbol.get() == 0 and bracket.get() == 0:
         infoLabel.config(text="Please select at least one character type")
         return
     else:
@@ -50,9 +52,15 @@ def generate_password():
         if number.get() == 1:
             chars += numbers
             #print(chars)
-        if specialChars.get() == 1:
-            chars += special
+        if specialChar.get() == 1:
+            chars += specials
             #print(chars)
+        if mathSymbol.get() == 1:
+            chars += mathSymbols
+            #print(chars)
+        if bracket.get() == 1:
+            chars += brackets
+            #print(chars) 
         for x in range(passwordLength):
             password += random.choice(chars)
         #print(f"The password is: {password}")
@@ -83,16 +91,19 @@ def copy_to_clipboard():
 root = tk.Tk()
 
 # Variablen
-letterUppercase = tk.IntVar(value=0)  # Startwert: 0 = nicht ausgewählt
+letterUppercase = tk.IntVar(value=0)  # Startwert: 0 = nicht ausgewählt  / 1 = ausgewählt
 letterLowercase = tk.IntVar(value=0)
 number = tk.IntVar(value=0)
-specialChars = tk.IntVar(value=0)
+specialChar = tk.IntVar(value=0)
+mathSymbol = tk.IntVar(value=0)
+bracket = tk.IntVar(value=0)
+spin_var = tk.StringVar(value="15")
 
 #Titelleiste
 root.title("Generate Password") 
 
 #Standardgröße setzen Breite x Höhe          
-root.geometry("420x300")
+root.geometry("450x300")
 #Mindestgröße: Breite x Höhe 
 #root.minsize(420, 300)
 #Maximalgröße: Breite x Höhe
@@ -132,7 +143,8 @@ inputLabel = ttk.Label(input_frame, text="Password length: ")
 inputLabel.grid(column=0, row=0, sticky="w")
 
 # Entry im Frame
-numberInput = ttk.Entry(input_frame, width=10)
+#numberInput = ttk.Entry(input_frame, width=10)
+numberInput = ttk.Spinbox(input_frame, from_=1, to=100, increment=1, width=10, textvariable=spin_var)
 numberInput.grid(column=1, row=0, sticky="w")
 
 # Info Label im Frame
@@ -142,15 +154,19 @@ infoLabel.grid(column=3, columnspan=4, row=0, sticky="ew")
 
 
 #Checkbox
-chkbtn1 = ttk.Checkbutton(root, text ='letters Uppercase',variable=letterUppercase, takefocus = 1)
-chkbtn2 = ttk.Checkbutton(root, text ='letters Lowercase',variable=letterLowercase, takefocus = 1)
-chkbtn3 = ttk.Checkbutton(root, text ='numbers',variable=number, takefocus = 1)
-chkbtn4 = ttk.Checkbutton(root, text ='specials',variable=specialChars, takefocus = 1)
+chkbtn1 = ttk.Checkbutton(root, text ='Uppercase ( A-Z )',variable=letterUppercase, takefocus = 1)
+chkbtn2 = ttk.Checkbutton(root, text ='Lowercase ( a-z )',variable=letterLowercase, takefocus = 1)
+chkbtn3 = ttk.Checkbutton(root, text ='Numbers ( 0-9 )',variable=number, takefocus = 1)
+chkbtn4 = ttk.Checkbutton(root, text ='Specials ( !"§$%&_.,:; )',variable=specialChar, takefocus = 1)
+chkbtn5 = ttk.Checkbutton(root, text ='Math symbols ( +-*/ )',variable=mathSymbol, takefocus = 1)
+chkbtn6 = ttk.Checkbutton(root, text ='Brackets ( (){}[] )',variable=bracket, takefocus = 1)
 
-chkbtn1.grid(column=0, row=2, columnspan=6, sticky="w", pady=(10,0), padx=20)
-chkbtn2.grid(column=0, row=3, columnspan=6, sticky="w", padx=20)
-chkbtn3.grid(column=0, row=4, columnspan=6, sticky="w", padx=20)
-chkbtn4.grid(column=0, row=5, columnspan=6, sticky="w", padx=20)
+chkbtn1.grid(column=0, row=2, columnspan=2, sticky="w", pady=(10,0), padx=20)
+chkbtn2.grid(column=0, row=3, columnspan=2, sticky="w", padx=20)
+chkbtn3.grid(column=0, row=4, columnspan=2, sticky="w", padx=20)
+chkbtn4.grid(column=3, row=2, columnspan=2, sticky="w", pady=(10,0),padx=20)
+chkbtn5.grid(column=3, row=3, columnspan=2, sticky="w", padx=20)
+chkbtn6.grid(column=3, row=4, columnspan=2, sticky="w", padx=20)
 
 # Frame für Label + Entry
 output_frame = ttk.Frame(root)
@@ -164,7 +180,7 @@ outputLabel = ttk.Label(output_frame, text="Your Password: ")
 outputLabel.grid(column=0, row=0, sticky="w")
 
 # Entry im Frame
-output_Password = ttk.Entry(output_frame, width=10)
+output_Password = ttk.Entry(output_frame, width=10,font=("Arial",15))
 output_Password.grid(column=0, columnspan=6, row=1, sticky="nsew")
 
 # starte das Programm
