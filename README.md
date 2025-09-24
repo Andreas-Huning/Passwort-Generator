@@ -1,77 +1,97 @@
 # 🔐 Passwort Generator (GUI)
 
-Ein einfaches, benutzerfreundliches GUI-Tool zur Generierung sicherer Passwörter mit Python & Tkinter.
+Ein einfaches, benutzerfreundliches Tool zur Erstellung sicherer Passwörter – entwickelt mit **Python** und **Tkinter**.
+
+![Vorschau des Passwort-Generators](assets/preview.png)
 
 ---
 
-## 📦 Funktionen
+## 📖 Inhaltsverzeichnis
+
+- [Funktionen](#funktionen)
+- [Schnellstart](#schnellstart)
+- [Bedienung](#bedienung)
+- [Dateistruktur](#dateistruktur)
+- [Sicherheitshinweis](#sicherheitshinweis)
+- [Autor](#autor)
+- [Lizenz](#lizenz)
+
+---
+
+## ✨ Funktionen
 
 ✅ Benutzerdefinierte Passwortlänge  
-✅ Auswahl von Zeichentypen:
-- 🔠 Großbuchstaben
-- 🔡 Kleinbuchstaben
-- 🔢 Zahlen
-- 🔣 Sonderzeichen  
-✅ Passwort-Kopie in die Zwischenablage  
-✅ Kompaktes, responsives GUI mit `Tkinter`  
-✅ Einfache Bedienung, ideal für den Alltag  
+✅ Auswahl verschiedener Zeichentypen:
+- 🔠 Großbuchstaben (A–Z)
+- 🔡 Kleinbuchstaben (a–z)
+- 🔢 Zahlen (0–9)
+- 🔣 Sonderzeichen (!"§$%&_.,:;)
+- ➕ Mathematische Zeichen (+ - * /)
+- 🧮 Klammern ((){}[])  
+✅ Automatisches Kopieren in die Zwischenablage  
+✅ Trennzeichen (z. B. für Seriennummern)  
+✅ Kompakte und intuitive Oberfläche mit **Tkinter**
 
 ---
 
 ## 🚀 Schnellstart
 
-### 1. 🔧 Voraussetzungen
+### 🔧 Voraussetzungen
 
-- Python 3.8+
-- Keine externen Bibliotheken notwendig (nur Standardbibliothek)
+- Python **3.8 oder höher**
+- Keine externen Bibliotheken notwendig (nur Python-Standardbibliothek)
 
-### 2. ▶️ Ausführen
+### ▶️ Anwendung starten
 
 ```bash
 python main.py
 ```
 
-Oder (wenn kompiliert mit PyInstaller):
+Oder, wenn mit **PyInstaller** kompiliert:
 
 ```bash
-./passwort_generator.exe
+./main.exe
 ```
 
 ---
 
 ## 💡 Bedienung
 
-1. Gib die gewünschte **Passwortlänge** ein  
-2. Wähle mindestens **einen Zeichentyp** (Großbuchstaben, Kleinbuchstaben, Zahlen, Sonderzeichen)  
-3. Klicke auf **Start**, um das Passwort zu generieren  
-4. Mit **Copy** wird das generierte Passwort in die Zwischenablage kopiert  
-5. Mit **Close** kannst du das Tool beenden
+1. Wähle die gewünschte **Passwortlänge**
+2. Aktiviere mindestens **einen Zeichentyp**
+3. (Optional) Gib an, nach wie vielen Zeichen ein Trennzeichen `-` eingefügt werden soll
+4. Klicke auf **Start**, um das Passwort zu generieren
+5. Mit **Copy** kopierst du das Passwort in die Zwischenablage
+6. Mit **Close** beendest du das Programm
 
 ---
 
 ## 📁 Dateistruktur
 
-```
+```plaintext
 passwort_generator/
 ├── assets/
-│   ├── favicon.ico        # Icon für das Fenster
-├── passwort_generator.py  # Hauptskript
+│   ├── favicon.ico        # Fenster-Icon
+│   └── preview.png        # Vorschau des Programms
+├── main.py  # Hauptskript
 └── README.md              # Diese Datei
 ```
 
+---
 
 ## 🔒 Sicherheitshinweis
 
-Dieses Tool generiert Passwörter **zufällig** und lokal auf deinem Gerät. Es speichert oder versendet **keine Daten**. Trotzdem sollte man bei sicherheitsrelevanten Anwendungen stets eigene Prüfungen durchführen.
+Dieses Tool generiert Passwörter **lokal auf deinem Gerät**. Es speichert, überträgt oder protokolliert **keine Daten**. Dennoch empfiehlt es sich, Passwörter regelmäßig zu ändern und sicherheitskritische Systeme mit zusätzlicher Absicherung (z. B. Zwei-Faktor-Authentifizierung) zu schützen.
 
 ---
 
 ## 👤 Autor
 
-- ✍️ Erstellt von Andreas Huning – [GitHub: Andreas-Huning](https://github.com/Andreas-Huning)
+**Andreas Huning**  
+🔗 [GitHub: Andreas-Huning](https://github.com/Andreas-Huning)
 
 ---
 
 ## 🧊 Lizenz
 
-Dieses Projekt ist unter der **MIT-Lizenz** veröffentlicht. Siehe [LICENSE](LICENSE) für Details.
+Veröffentlicht unter der **MIT-Lizenz**. Siehe [LICENSE](LICENSE) für Details.
