@@ -73,7 +73,7 @@ passwort_generator/
 ├── assets/
 │   ├── favicon.ico        # Fenster-Icon
 │   └── preview.png        # Vorschau des Programms
-├── main.py  # Hauptskript
+├── main.py                # Hauptskript
 └── README.md              # Diese Datei
 ```
 
