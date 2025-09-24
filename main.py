@@ -54,17 +54,25 @@ def generate_password():
 
     # Alle ausgewählten Zeichengruppen zusammenfügen
     chars = ''.join(group for selected, group in options if selected)
-    print(f"vor dem Mischen : {chars}")
+
     # Liste aus Zeichen machen, mischen und wieder zusammenfügen
     char_list = list(chars)
     random.shuffle(char_list)
     chars = ''.join(char_list)
 
-    print(f"nach dem Mischen : {chars}")
-
     # Passwort generieren
-    password = ''.join(random.choice(chars) for x in range(passwordLength))
+    password = ''#.join(random.choice(chars) for x in range(passwordLength))
+    for i in range(passwordLength):
+        password += random.choice(chars)
+        try:
+            separatorLenght = int(numberInputSeparator.get())
+            if separatorLenght > 0 :
+                if ( i + 1 ) % separatorLenght == 0 and ( i + 1 ) != passwordLength:
+                    password += '-'
+        except ValueError:
+            print("Fehler")
 
+        
     # Passwort anzeigen
     output_Password.delete(0, tk.END)
     output_Password.insert(0, password)
@@ -92,17 +100,14 @@ number = tk.IntVar(value=0)
 specialChar = tk.IntVar(value=0)
 mathSymbol = tk.IntVar(value=0)
 bracket = tk.IntVar(value=0)
-spin_var = tk.StringVar(value="15")
+spin_var = tk.StringVar(value="16")
+spin_var2 = tk.StringVar(value="0")
 
 #Titelleiste
 root.title("Generate Password") 
 
 #Standardgröße setzen Breite x Höhe          
-root.geometry("450x300")
-#Mindestgröße: Breite x Höhe 
-#root.minsize(420, 300)
-#Maximalgröße: Breite x Höhe
-#root.maxsize(500, 400)
+root.geometry("450x320")
 
 #Deaktiviere das Skalieren (weder in Breite noch in Höhe)                 
 root.resizable(False, False)           
@@ -120,9 +125,9 @@ for i in range(6):
 
 # Grid-Zeilen konfigurieren
 # Zeile 0 = Titel
-# Zeile 1 = Inhalt
-# Zeile 2 = Stretch-Zeile (füllt alles dazwischen)
-# Zeile 3 = Button & Copyright
+# Zeile 1-7 = Inhalt
+# Zeile 9 = Stretch-Zeile (füllt alles dazwischen)
+# Zeile 10 = Button & Copyright
 root.grid_rowconfigure(8, weight=1)  # Hauptinhalt stretchbar
 
 #Label erstellen
@@ -162,6 +167,20 @@ chkbtn3.grid(column=0, row=4, columnspan=2, sticky="w", padx=20)
 chkbtn4.grid(column=3, row=2, columnspan=2, sticky="w", pady=(10,0),padx=20)
 chkbtn5.grid(column=3, row=3, columnspan=2, sticky="w", padx=20)
 chkbtn6.grid(column=3, row=4, columnspan=2, sticky="w", padx=20)
+
+# Trennzeichen einfügen für zum Beispiel Seriennummern
+# Frame für Label + Entry
+input_frame_separator = ttk.Frame(root)
+input_frame_separator.grid(column=0, row=5, columnspan=6, sticky="w", padx=20, pady=(10, 0))
+
+# Label im Frame
+inputLabelSeparator = ttk.Label(input_frame_separator, text="Separator '-' every x characters ")
+inputLabelSeparator.grid(column=0, row=0, sticky="w")
+
+# Entry im Frame
+#numberInput = ttk.Entry(input_frame, width=10)
+numberInputSeparator = ttk.Spinbox(input_frame_separator, from_=0, to=100, increment=1, width=5, textvariable=spin_var2)
+numberInputSeparator.grid(column=1, row=0, sticky="w", padx=10)
 
 # Frame für Label + Entry
 output_frame = ttk.Frame(root)
