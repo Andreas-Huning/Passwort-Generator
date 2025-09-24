@@ -1,53 +1,57 @@
-# 🔐 Passwort Generator (GUI)
+# 🔐 Password Generator (GUI)
 
-Ein einfaches, benutzerfreundliches Tool zur Erstellung sicherer Passwörter – entwickelt mit **Python** und **Tkinter**.
+This is the English version of the documentation.
 
-![Vorschau des Passwort-Generators](assets/Preview.png)
+👉 [Read the German version](./README.de.md)
 
----
+A simple and user-friendly tool to generate secure passwords – developed with **Python** and **Tkinter**.
 
-## 📖 Inhaltsverzeichnis
-
-- [Funktionen](#funktionen)
-- [Schnellstart](#schnellstart)
-- [Bedienung](#bedienung)
-- [Dateistruktur](#dateistruktur)
-- [Sicherheitshinweis](#sicherheitshinweis)
-- [Autor](#autor)
-- [Lizenz](#lizenz)
+![Preview of the Password Generator](assets/Preview.png)
 
 ---
 
-## ✨ Funktionen
+## 📖 Table of Contents
 
-✅ Benutzerdefinierte Passwortlänge  
-✅ Auswahl verschiedener Zeichentypen:
-- 🔠 Großbuchstaben (A–Z)
-- 🔡 Kleinbuchstaben (a–z)
-- 🔢 Zahlen (0–9)
-- 🔣 Sonderzeichen (!"§$%&_.,:;)
-- ➕ Mathematische Zeichen (+ - * /)
-- 🧮 Klammern ((){}[])  
-✅ Automatisches Kopieren in die Zwischenablage  
-✅ Trennzeichen (z. B. für Seriennummern)  
-✅ Kompakte und intuitive Oberfläche mit **Tkinter**
+- [Features](#features)
+- [Quick Start](#quick-start)
+- [Usage](#usage)
+- [File Structure](#file-structure)
+- [Security Notice](#security-notice)
+- [Author](#author)
+- [License](#license)
 
 ---
 
-## 🚀 Schnellstart
+## ✨ Features
 
-### 🔧 Voraussetzungen
+✅ Customizable password length  
+✅ Selection of various character types:
+- 🔠 Uppercase letters (A–Z)
+- 🔡 Lowercase letters (a–z)
+- 🔢 Numbers (0–9)
+- 🔣 Special characters (!"§$%&_.,:;)
+- ➕ Mathematical symbols (+ - * /)
+- 🧮 Brackets ((){}[])  
+✅ Automatic copying to clipboard  
+✅ Separators (e.g. for serial keys)  
+✅ Compact and intuitive interface using **Tkinter**
 
-- Python **3.8 oder höher**
-- Keine externen Bibliotheken notwendig (nur Python-Standardbibliothek)
+---
 
-### ▶️ Anwendung starten
+## 🚀 Quick Start
+
+### 🔧 Requirements
+
+- Python **3.8 or higher**
+- No external libraries required (only Python standard library)
+
+### ▶️ Run the application
 
 ```bash
 python main.py
 ```
 
-Oder, wenn mit **PyInstaller** kompiliert:
+Or, if compiled with **PyInstaller**:
 
 ```bash
 ./main.exe
@@ -55,43 +59,43 @@ Oder, wenn mit **PyInstaller** kompiliert:
 
 ---
 
-## 💡 Bedienung
+## 💡 Usage
 
-1. Wähle die gewünschte **Passwortlänge**
-2. Aktiviere mindestens **einen Zeichentyp**
-3. (Optional) Gib an, nach wie vielen Zeichen ein Trennzeichen `-` eingefügt werden soll
-4. Klicke auf **Start**, um das Passwort zu generieren
-5. Mit **Copy** kopierst du das Passwort in die Zwischenablage
-6. Mit **Close** beendest du das Programm
+1. Choose the desired **password length**
+2. Enable at least **one character type**
+3. (Optional) Specify after how many characters a separator `-` should be inserted
+4. Click **Start** to generate the password
+5. Use **Copy** to copy the password to the clipboard
+6. Use **Close** to exit the program
 
 ---
 
-## 📁 Dateistruktur
+## 📁 File Structure
 
 ```plaintext
 passwort_generator/
 ├── assets/
-│   ├── favicon.ico        # Fenster-Icon
-│   └── preview.png        # Vorschau des Programms
-├── main.py                # Hauptskript
-└── README.md              # Diese Datei
+│   ├── favicon.ico        # Window icon
+│   └── preview.png        # Program preview
+├── main.py                # Main script
+└── README.md              # This file
 ```
 
 ---
 
-## 🔒 Sicherheitshinweis
+## 🔒 Security Notice
 
-Dieses Tool generiert Passwörter **lokal auf deinem Gerät**. Es speichert, überträgt oder protokolliert **keine Daten**. Dennoch empfiehlt es sich, Passwörter regelmäßig zu ändern und sicherheitskritische Systeme mit zusätzlicher Absicherung (z. B. Zwei-Faktor-Authentifizierung) zu schützen.
+This tool generates passwords **locally on your device**. It does not store, transmit, or log **any data**. However, it is still recommended to regularly change passwords and protect critical systems with additional security measures (e.g. two-factor authentication).
 
 ---
 
-## 👤 Autor
+## 👤 Author
 
 **Andreas Huning**  
 🔗 [GitHub: Andreas-Huning](https://github.com/Andreas-Huning)
 
 ---
 
-## 🧊 Lizenz
+## 🧊 License
 
-Veröffentlicht unter der **MIT-Lizenz**. Siehe [LICENSE](LICENSE) für Details.
+Released under the **MIT License**. See [LICENSE](LICENSE) for details.
