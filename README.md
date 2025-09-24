@@ -2,7 +2,7 @@
 
 Ein einfaches, benutzerfreundliches Tool zur Erstellung sicherer Passwörter – entwickelt mit **Python** und **Tkinter**.
 
-![Vorschau des Passwort-Generators](assets/preview.png)
+![Vorschau des Passwort-Generators](assets/Preview.png)
 
 ---
 
