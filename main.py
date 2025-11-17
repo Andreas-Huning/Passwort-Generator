@@ -1,26 +1,10 @@
-import os
-import sys
 import tkinter as tk
 from tkinter import ttk
-from tkinter import filedialog
 import random
+from  utils.resource_path import get_resource_path
+from utils.messagebox import get_message_box
+from config import FAVICON, CURRENT_YEAR,LETTERS,NUMBERS,SPECIALS, MATHSYMBOLS, BRACKETS
 
-#Variablen
-letters = "abcdefghijklmnopqrstuvwxyz"
-numbers = "1234567890"
-specials = '!"§$%&_.,:;'
-mathSymbols = "+-*/"
-brackets= "(){}[]"
-
-def resource_path(relative_path):
-    """ Gibt Pfad zur Datei, auch im PyInstaller-Build """
-    try:
-        # PyInstaller erstellt einen temporären Pfad _MEIPASS
-        base_path = sys._MEIPASS
-    except Exception:
-        base_path = os.path.abspath(".")
-
-    return os.path.join(base_path, relative_path)
 
 # Funktion zum Beenden
 def close_tool():
@@ -30,12 +14,12 @@ def close_tool():
 def generate_password():
     # Alle Checkboxen in einer Liste zur einfacheren Prüfung
     options = [
-        (letterUppercase.get(), letters.upper()),
-        (letterLowercase.get(), letters),
-        (number.get(), numbers),
-        (specialChar.get(), specials),
-        (mathSymbol.get(), mathSymbols),
-        (bracket.get(), brackets)
+        (letterUppercase.get(), LETTERS.upper()),
+        (letterLowercase.get(), LETTERS),
+        (number.get(), NUMBERS),
+        (specialChar.get(), SPECIALS),
+        (mathSymbol.get(), MATHSYMBOLS),
+        (bracket.get(), BRACKETS)
     ]
 
     # Prüfen, ob mindestens eine Option gewählt wurde
@@ -70,14 +54,11 @@ def generate_password():
                 if ( i + 1 ) % separatorLenght == 0 and ( i + 1 ) != passwordLength:
                     password += '-'
         except ValueError:
-            print("Fehler")
-
+            get_message_box("Error","Es ist ein Fehler beim generieren aufgetreten",5)           
         
     # Passwort anzeigen
     output_Password.delete(0, tk.END)
     output_Password.insert(0, password)
-
-
 
 def copy_to_clipboard():
     password = output_Password.get()
@@ -94,7 +75,7 @@ def copy_to_clipboard():
 root = tk.Tk()
 
 # Variablen
-letterUppercase = tk.IntVar(value=0)  # Startwert: 0 = nicht ausgewählt  / 1 = ausgewählt
+letterUppercase = tk.IntVar(value=1)  # Startwert: 0 = nicht ausgewählt  / 1 = ausgewählt
 letterLowercase = tk.IntVar(value=0)
 number = tk.IntVar(value=0)
 specialChar = tk.IntVar(value=0)
@@ -107,13 +88,13 @@ spin_var2 = tk.StringVar(value="0")
 root.title("Generate Password") 
 
 #Standardgröße setzen Breite x Höhe          
-root.geometry("450x320")
+#root.geometry("450x320")
 
 #Deaktiviere das Skalieren (weder in Breite noch in Höhe)                 
 root.resizable(False, False)           
 
 # Icon oben links & in Taskleiste
-root.iconbitmap(resource_path("assets/favicon.ico"))
+root.iconbitmap(get_resource_path(FAVICON))
 
 #Fenster aktivieren (in den Vordergrund setzen)
 root.focus()                            
@@ -210,7 +191,7 @@ close_button = ttk.Button(root, text="close",command=close_tool)
 close_button.grid(column=5, row=9, padx=(0,10), pady=(0,10), sticky="e")
 
 # Copyright
-copyright_label = ttk.Label(root, text="© 2025 Andreas Huning")
+copyright_label = ttk.Label(root, text=f"© {CURRENT_YEAR} Andreas Huning")
 copyright_label.grid(column=0, row=9, columnspan=2, sticky="w", padx=(10,0), pady=(0,10))
 
 #öffnet das Fenster und hält es offen
